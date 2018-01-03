@@ -3,6 +3,19 @@ import Ember from 'ember';
 // https://gist.github.com/pwfisher/5fd09ec2ccab253008f9
 // Helpers for Google Tag Manager
 export default Ember.Service.extend({
+  defaultEvent: {
+    event: 'trackEvent',
+    eventCategory: '',
+    eventAction: '',
+    eventLabel: '',
+    eventValue: ''
+  },
+
+  defaultPageView: {
+    event: 'vpv',
+    virtualPagePath: ''
+  },
+
   createPayload: function (type, o) {
     var data = o || {};
     var defaultPayload = this['default' + type];

@@ -1,6 +1,6 @@
 export function initialize(container /*, application */) {
   var router = container.lookup('router:main');
-  var gtm = container.lookup('gtm')
+  var gtm = container.lookup('service:gtm')
 
   router.on('didTransition', function () {
     gtm.trackPageView(this.get('url'));
