@@ -1,0 +1,1 @@
+export { default } from 'ember-cli-google-tag-manager/services/gtm';
