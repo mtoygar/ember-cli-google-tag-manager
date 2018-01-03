@@ -1,25 +1,25 @@
-# Ember-cli-google-tag-manager
+# Ember CLI google-tag-manager
 
-This README outlines the details of collaborating on this Ember addon.
+Min Version 1.13.8
 
-## Installation
+## Configuration
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+In `config/environment`
 
-## Running
+```javascript
+var ENV = {
+  // ...
+  googleTagManager: {
+    appId: process.env.GOOGLE_TAG_MANAGER_ID
+  }
+}
+```
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+## Effects
 
-## Running Tests
+The addon will inject the Google Tag Manager code in your `<head>` and `<body>`
+as specified here:
+[https://developers.google.com/tag-manager/quickstart](https://developers.google.com/tag-manager/quickstart)
 
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+Then addon plugs itself on the main router of the application and send a
+`PageView` event after each successful transition.
