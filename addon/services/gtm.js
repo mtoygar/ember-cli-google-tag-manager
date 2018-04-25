@@ -16,12 +16,25 @@ export default Ember.Service.extend({
     virtualPagePath: ''
   },
 
+  commonFields: {},
+
+  addCommonField: function (key, value) {
+    this.commonFields[key] = value;
+  },
+
+  removeCommonField: function (key) {
+    delete this.commonFields[key];
+  },
+
   createPayload: function (type, o) {
     var data = o || {};
     var defaultPayload = this['default' + type];
     var payload = {};
     Object.keys(defaultPayload).forEach(function (key) {
       payload[key] = data.hasOwnProperty(key) ? data[key] : defaultPayload[key];
+    });
+    Object.keys(this.commonFields).forEach((key) => {
+      payload[key] = this.commonFields[key];
     });
     return payload;
   },

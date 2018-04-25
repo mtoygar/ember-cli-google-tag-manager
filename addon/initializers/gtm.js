@@ -1,14 +1,14 @@
 export function initialize(container /*, application */) {
   // Do not inject anythin in the router if appId is not present
-  var environment = container.lookupFactory('config:environment');
-  var config = environment.googleTagManager
-  var appId = config && config.appId
+  var environment = container.lookupFactory('config:environment') || {};
+  var config = environment.googleTagManager;
+  var appId = config && config.appId;
   if (!appId) {
-    return
+    return;
   }
 
   var router = container.lookup('router:main');
-  var gtm = container.lookup('service:gtm')
+  var gtm = container.lookup('service:gtm');
 
   router.on('didTransition', function () {
     gtm.trackPageView(this.get('url'));
