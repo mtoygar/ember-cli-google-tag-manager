@@ -10,3 +10,22 @@ test('it exists', function(assert) {
   var service = this.subject();
   assert.ok(service);
 });
+
+test('it should add common fields in all payloads', function(assert) {
+  var service = this.subject();
+  window.dataLayer = [];
+  service.addCommonField("userId", "1");
+
+  service.trackEvent();
+  assert.equal(window.dataLayer.length, 1);
+  var e = window.dataLayer[0];
+  assert.equal(e.userId, "1");
+
+  window.dataLayer = [];
+  service.removeCommonField("userId");
+
+  service.trackEvent();
+  assert.equal(window.dataLayer.length, 1);
+  e = window.dataLayer[0];
+  assert.equal(e.userId, undefined);
+});
