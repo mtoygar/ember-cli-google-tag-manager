@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { initialize } from '../../../initializers/gtm';
+import { initialize } from '../../../instance-initializers/gtm';
 import { module, test } from 'qunit';
 
 var registry, application;
