@@ -10,7 +10,9 @@ In `config/environment`
 var ENV = {
   // ...
   googleTagManager: {
-    appId: process.env.GOOGLE_TAG_MANAGER_ID
+    appId: process.env.GOOGLE_TAG_MANAGER_ID,
+    gtmAuth: process.env.GOOGLE_TAG_MANAGER_AUTH, // optional
+    gtmPreview: process.env.GOOGLE_TAG_MANAGER_PREVIEW // optional
   }
 }
 ```
