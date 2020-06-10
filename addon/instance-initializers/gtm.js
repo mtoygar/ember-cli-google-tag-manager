@@ -7,11 +7,11 @@ export function initialize(application) {
     return;
   }
 
-  var router = application.lookup('router:main');
+  var router = application.lookup('service:router');
   var gtm = application.lookup('service:gtm');
 
-  router.on('didTransition', function () {
-    gtm.trackPageView(this.get('url'));
+  router.on('routeDidChange', function (_transition) {
+    gtm.trackPageView(this.currentURL);
   });
 }
 
