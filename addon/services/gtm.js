@@ -1,22 +1,21 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 
 // https://gist.github.com/pwfisher/5fd09ec2ccab253008f9
 // Helpers for Google Tag Manager
-export default Ember.Service.extend({
-  defaultEvent: {
-    event: 'trackEvent',
-    eventCategory: '',
-    eventAction: '',
-    eventLabel: '',
-    eventValue: ''
-  },
+export default Service.extend({
+  init() {
+    this._super(...arguments);
 
-  defaultPageView: {
-    event: 'vpv',
-    virtualPagePath: ''
+    this.defaultEvent = this.defaultEvent || {
+      event: 'trackEvent',
+      eventCategory: '',
+      eventAction: '',
+      eventLabel: '',
+      eventValue: ''
+    };
+    this.defaultPageView = this.defaultPageView || { event: 'vpv', virtualPagePath: '' };
+    this.commonFields = this.commonFields || {};
   },
-
-  commonFields: {},
 
   addCommonField: function (key, value) {
     this.commonFields[key] = value;

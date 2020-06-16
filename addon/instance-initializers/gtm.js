@@ -10,7 +10,7 @@ export function initialize(application) {
   var router = application.lookup('service:router');
   var gtm = application.lookup('service:gtm');
 
-  router.on('routeDidChange', function (_transition) {
+  router.on('routeDidChange', function() {
     gtm.trackPageView(this.currentURL);
   });
 }

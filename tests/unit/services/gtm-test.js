@@ -1,6 +1,7 @@
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('service:gtm', 'Unit | Service | gtm', {
+  integration: true
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });
