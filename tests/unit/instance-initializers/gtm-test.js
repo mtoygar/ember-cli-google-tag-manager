@@ -3,13 +3,12 @@ import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
 import Application from '@ember/application';
 
-var registry, application;
+let application;
 
 module('Unit | Initializer | gtm', {
   beforeEach: function() {
     run(function() {
       application = Application.create();
-      registry = application.registry;
       application.deferReadiness();
     });
   }
@@ -17,7 +16,7 @@ module('Unit | Initializer | gtm', {
 
 // Replace this with your real tests.
 test('it works', function(assert) {
-  initialize(registry, application);
+  initialize(application);
 
   // you would normally confirm the results of the initializer here
   assert.ok(true);
