@@ -1,34 +1,25 @@
 ---
 language: node_js
 node_js:
-  - "0.12"
-
-sudo: false
-
-cache:
-  directories:
-    - node_modules
+  - "10.15"
 
 env:
-  - EMBER_TRY_SCENARIO=default
+  - EMBER_TRY_SCENARIO=ember-lts-2.18
+  - EMBER_TRY_SCENARIO=ember-lts-3.4
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
-
-matrix:
-  fast_finish: true
-  allow_failures:
-    - env: EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-default
+  - EMBER_TRY_SCENARIO=ember-default-with-jquery
 
 before_install:
-  - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-  - "npm config set spin false"
-  - "npm install -g npm@^2"
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+cache: yarn
 
 install:
-  - npm install -g bower
-  - npm install
-  - bower install
+  - yarn install --frozen-lockfile --non-interactive
 
 script:
-  - ember try $EMBER_TRY_SCENARIO test
+  - yarn ember try:one $EMBER_TRY_SCENARIO
